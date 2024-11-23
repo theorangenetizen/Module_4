@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My cards 2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="artist-profile-container"></div>
+
+    <div id="portfolio-container" class="portfolio-container"></div>
+
+    <div id="card-list"></div>
+    <script>
+      const artist = {
+        name: "Vincent Van Gogh",
+        portfolio: [
+          {
+            title: "portrait",
+            url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image",
+          },
+          {
+            title: "sky",
+            url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg",
+          },
+        ],
+      };
+      function createArtistProfile() {
+        const profileContainer = document.getElementById("portfolio-container");
+        const profileCard = document.createElement("div");
+        profileCard.classList.add("profile-card");
+        profileCard.innerHTML = `
+                <h2>${artist.name}</h2>
+                <p>Explore the portfolio of Dutch famed artist: ${artist.name}.</p>
+            `;
+        profileContainer.appendChild(profileCard);
+      }
+
+      // Function to generate portfolio cards
+      function createPortfolioCards() {
+        const portfolioContainer = document.getElementById(
+          "portfolio-container"
+        );
+        artist.portfolio.forEach((item) => {
+          const portfolioCard = document.createElement("div");
+          portfolioCard.classList.add("portfolio-card");
+          portfolioCard.innerHTML = `
+                    <img src="${item.url}" alt="${item.title}">
+                    <h3>${item.title}</h3>
+                `;
+          portfolioContainer.append(portfolioCard);
+        });
+      }
+
+      createArtistProfile();
+      createPortfolioCards();
+    </script>
+  </body>
+</html>
